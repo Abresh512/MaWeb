@@ -1,0 +1,13 @@
+{% extends 'pages/layout.html' %}
+
+{% block body %}
+
+<h1>Lists</h1>
+
+    <ul>
+        {% for out in output %}
+            <li>{{ out }}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

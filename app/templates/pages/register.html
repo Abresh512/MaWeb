@@ -1,0 +1,23 @@
+{% extends 'pages/layout.html' %}
+
+{% block body %}
+
+
+<br>
+<h1>Register</h1>
+
+<!-- {% if messages %}
+    {% for message in messages %}
+        <div>{{ message }}</div>
+    {% endfor %}
+{% endif %} -->
+
+<form action="{% url 'output' %}" method="post">
+    {% csrf_token %}
+        {{ form.as_p }}
+    <button type="submit">Register</button>
+    
+</form>
+
+
+{% endblock %}

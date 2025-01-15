@@ -1,0 +1,9 @@
+{% extends 'pages/layout.html' %}
+
+{% block body %}
+    <form action="{% url '' %}" method="post">
+        {% csrf_token %}
+        
+    </form>
+
+{% endblock %}
