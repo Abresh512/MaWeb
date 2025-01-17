@@ -1,9 +1,22 @@
 {% extends 'pages/layout.html' %}
 
 {% block body %}
-    <form action="{% url '' %}" method="post">
+
+    <form action="{% url 'login' %}" method="post">
         {% csrf_token %}
         
-    </form>
 
+            <h1>Login</h1>
+            <form>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Username" name="username" required>
+                </div><br>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Password" name="password" required>
+                </div><br>
+                <input type="submit" value="Login" class="btn btn-secondary">
+            </form>
+            
+        </form>
+        
 {% endblock %}

@@ -4,7 +4,6 @@
 
 
 <br>
-<h1>Register</h1>
 
 <!-- {% if messages %}
     {% for message in messages %}
@@ -12,12 +11,17 @@
     {% endfor %}
 {% endif %} -->
 
-<form action="{% url 'output' %}" method="post">
+<center>
+<h1>Register</h1>
+
+    <form action="{% url 'register' %}" method="post">
     {% csrf_token %}
-        {{ form.as_p }}
-    <button type="submit">Register</button>
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-secondary">Register</button>
     
 </form>
 
+
+</center>
 
 {% endblock %}
