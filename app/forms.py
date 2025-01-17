@@ -1,7 +1,7 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
-
-    
 gender = "----"
 male = "Male"
 female = "Female"
@@ -25,17 +25,19 @@ grade_choices = [
 
 
 class RegisterForm(forms.Form):
-    first_Name = forms.CharField(max_length=255)
-    middle_Name = forms.CharField(max_length=255)
-    last_Name = forms.CharField(max_length=255)
-    age = forms.IntegerField()
-    phone = forms.IntegerField()
-    password = forms.CharField(max_length=255, widget=forms.PasswordInput)
-    confirm_password = forms.CharField(max_length=255, widget=forms.PasswordInput)
-    
-    
-    gender_choices = forms.ChoiceField(choices = gender_choices, required=True, label="Gender")
-    grade_choices = forms.ChoiceField(choices = grade_choices, required=True, label="Grade")
+        
+    first_name = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"First Name", "class":"form-control"}), label="")
+    middle_name = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Middle Name", "class":"form-control"}), label="")
+    last_Name = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Last Name", "class":"form-control"}), label="")
+    username = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Username", "class":"form-control"}), label="")
+    age = forms.IntegerField(required=True, widget=forms.widgets.NumberInput(attrs={"placeholder":"Age", "class":"form-control"}), label="")
+    phone = forms.IntegerField(required=True, widget=forms.widgets.NumberInput(attrs={"placeholder":"Phone", "class":"form-control"}), label="")
+
+    password = forms.CharField(required=True, widget=forms.widgets.PasswordInput(attrs={"placeholder":"Password", "class":"form-control"}), label="")        
+    confirm_password = forms.CharField(required=True, widget=forms.widgets.PasswordInput(attrs={"placeholder":"Confirm Password", "class":"form-control"}), label="")
+
+    gender_choices = forms.ChoiceField(choices = gender_choices, required=True, label="Gender", widget=forms.widgets.Select(attrs={"placeholder":"Gender","class":"form-control"}))
+    grade_choices = forms.ChoiceField(choices = grade_choices, required=True, label="Grade", widget=forms.widgets.Select(attrs={"placeholder":"Grade","class":"form-control"}))
 
 
     '''def clean(self):

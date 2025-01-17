@@ -26,6 +26,7 @@ class Registration(models.Model):
     first_Name = models.CharField(max_length=50)
     middle_Name = models.CharField(max_length=50)
     last_Name = models.CharField(max_length=50)
+    username = models.CharField(max_length=50, null=True)
     age = models.IntegerField()
     phone = models.IntegerField()
     password = models.CharField(max_length=10)

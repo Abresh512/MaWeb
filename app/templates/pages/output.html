@@ -2,12 +2,43 @@
 
 {% block body %}
 
-<h1>Lists</h1>
+{% if user.is_authenticated %}
 
-    <ul>
-        {% for out in output %}
-            <li>{{ out }}</li>
+<table class="table table-striped table-hover table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">First Name</th>
+        <th scope="col">Middle Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Username</th>
+        <th scope="col">Age</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Grade</th>
+        <th scope="col">ID</th>
+      </tr>
+    </thead>
+    <tbody>
+
+        {% if records %}
+        {% for record in records %}
+
+        <tr>
+            <td>{{ record.first_Name }}</td>
+            <td>{{ record.middle_Name }}</td>
+            <td>{{ record.last_Name }}</td>
+            <td>{{ record.username }}</td>
+            <td>{{ record.age }}</td>
+            <td>{{ record.phone }}</td>
+            <td>{{ record.gender }}</td>
+            <td>{{ record.grade }}</td>
+            <td>{{ record.id }}</td>
+        </tr>
+        
         {% endfor %}
-    </ul>
+        {% endif %}
+
+
+{% endif %}
 
 {% endblock %}
