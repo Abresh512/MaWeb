@@ -14,13 +14,12 @@ def register(request):
         if form.is_valid():
             form.save()
             return redirect('output')
-        
     else:
         form = RegisterForm()
         if 'submitted' in request.GET:
             submitted = True
     
-    return render(request, 'pages/register.html', {'form':form, 'submitted':submitted})
+    return render(request, 'pages/register.html', {'form':form, 'submitted':submitted, 'student':'student'})
 
  
 

@@ -1,14 +1,12 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Registration
+from .models import Registration, Teacher
 
 
 class RegisterForm(ModelForm):
     class Meta:
         model = Registration
         fields = '__all__'
-
-
 
 
 
