@@ -3,10 +3,12 @@ from django.forms import ModelForm
 from .models import Registration, Teacher
 
 
-class RegisterForm(ModelForm):
+class RegisterForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
+
     class Meta:
         model = Registration
-        fields = '__all__'
+        fields = ['first_Name', 'middle_Name', 'last_Name', 'phone', 'username', 'password', 'grade']
 
 
 

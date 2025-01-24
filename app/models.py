@@ -58,7 +58,6 @@ class Teacher(models.Model):
     phone = models.IntegerField()
     username = models.CharField(max_length=50)
     password = models.CharField(max_length=10)
-    grade = models.CharField(max_length=10, choices=grade_choices, default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     def __str__(self):
@@ -66,13 +65,19 @@ class Teacher(models.Model):
     
 
 class Subj_teach(models.Model):
-    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, related_name="teach")
-    subject = models.ManyToManyField(Subject,  related_name="sub_teach")
-
-
-
+    teacher = models.ManyToManyField(Teacher, related_name="teach")
+    subject = models.ForeignKey(Subject, null=True, on_delete=models.CASCADE, related_name="sub_teach")
+    grade = models.CharField(null=True, blank=True, default=False, max_length=10, choices=grade_choices)
+ 
 
 
 class Class_leader(models.Model):
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, related_name="nameing_teacher")
     student = models.ManyToManyField(Registration, related_name="roster")
+
+
+
+class Student_subject(models.Model):
+    student = models.ManyToManyField(Registration, related_name='student_subject')
+    subject = models.ManyToManyField(Subject, related_name='subject_student')
+    grade = models.CharField(null=True, blank=True, default=False, max_length=10, choices=grade_choices)
