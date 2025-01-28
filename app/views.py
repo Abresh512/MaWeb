@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .forms import RegisterForm
-from .models import Registration
+from .models import Registration, Teacher
 # Create your views here.
 
 def index(request):
@@ -19,9 +19,15 @@ def register(request):
         if 'submitted' in request.GET:
             submitted = True
     
-    return render(request, 'pages/register.html', {'form':form, 'submitted':submitted, 'student':'student'})
+    return render(request, 'pages/register.html', 
+        {'form':form, 
+        'submitted':submitted,
+        })
 
- 
+
+
+
+
 
 def login_user(request):
     if request.method == 'POST':
@@ -40,7 +46,7 @@ def logout_user(request):
     return redirect('index')
 
 
-def output(request):
+def students(request):
     if request.user.is_authenticated:
         records = Registration.objects.all()
         if request.method == 'post':
@@ -49,8 +55,27 @@ def output(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('output')
+                return redirect('students')
             else:
                 return redirect('index')
-        return render(request, 'pages/output.html', {'records':records})
+        return render(request, 'pages/students.html', {'records':records})
     return redirect('index')
+
+
+
+def teachers(request):
+    if request.user.is_authenticated:
+        records = Teacher.objects.all()
+        if request.method == 'post':
+            username = request.POST.get['username']
+            password = request.POST.get['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('teachers')
+            else:
+                return redirect('index')
+        return render(request, 'pages/teachers.html', {'records':records})
+    return redirect('index')
+
+

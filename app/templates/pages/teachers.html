@@ -1,0 +1,42 @@
+{% extends 'pages/layout.html' %}
+
+{% block body %}
+
+{% if user.is_authenticated %}
+    
+<br>
+      <table class="table table-striped table-hover table-bordered">
+        <thead class="table-dark">
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Username</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Created at</th>
+              <th scope="col">Updated at</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            
+              {% if records %}
+              {% for record in records %}
+
+              <tr>
+                  <td>{{ record.id }}</td>
+                  <td>{{ record.first_Name }}</td>
+                  <td>{{ record.last_Name }}</td>
+                  <td>{{ record.username }}</td>
+                  <td>{{ record.phone }}</td>
+                  <td>{{ record.created_at }}</td>
+                  <td>{{ record.updated_at }}</td>
+                </tr>
+                
+                {% endfor %}
+                {% endif %}
+                
+                
+  {% endif %}
+
+{% endblock %}
