@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .forms import RegisterForm
-from .models import Registration, Teacher
+from .models import Registration, Teacher, Subj_teach, section
 # Create your views here.
 
 def index(request):
     return render(request, 'pages/index.html')
+
+
 
 def register(request):
     submitted = False
@@ -13,7 +15,7 @@ def register(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('output')
+            return redirect('index')
     else:
         form = RegisterForm()
         if 'submitted' in request.GET:
@@ -26,9 +28,6 @@ def register(request):
 
 
 
-
-
-
 def login_user(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -36,7 +35,7 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('output')
+            return redirect('students')
         else:
             return redirect('login')
     return render(request, 'pages/login.html')
@@ -79,3 +78,22 @@ def teachers(request):
     return redirect('index')
 
 
+
+def sub_teach(request):
+    if request.user.is_authenticated:
+        records = Subj_teach.objects.all()
+        return render(request, 'pages/sub_teach.html', {'records':records})
+    return render('index')
+
+
+def section_A(request):
+    if request.user.is_authenticated:
+        records = Registration.objects.filter(section='A')
+        return render(request, 'pages/grade9.html',
+            {'records':records})
+    
+def section_A(request):
+    if request.user.is_authenticated:
+        records = Registration.objects.filter(section='A')
+        return render(request, 'pages/grade9.html',
+            {'records':records})

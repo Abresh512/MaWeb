@@ -1,0 +1,43 @@
+{% extends 'pages/layout.html' %}
+
+{% block body %}
+
+{% if user.is_authenticated %}
+
+
+<table class="table table-striped table-hover table-bordered">
+    <thead class="table-dark">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Teachers</th>
+          <th scope="col">Subject</th>
+          <th scope="col">Grade</th>
+          <th scope="col">Section</th>
+          <th scope="col">Created at</th>
+          <th scope="col">Updated at</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        
+          {% if records %}
+          {% for record in records %}
+
+          <tr>
+              <td>{{ record.id }}</td>
+              <td>{{ record.teacher }}</td>
+              <td>{{ record.subject }}</td>
+              <td>{{ record.grade }}</td>
+              <td>{{ record.section }}</td>
+              <td>{{ record.created_at }}</td>
+              <td>{{ record.updated_at }}</td>
+            </tr>
+            
+            {% endfor %}
+            {% endif %}
+            
+
+{% endif %}
+
+
+{% endblock %}

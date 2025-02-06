@@ -1,0 +1,23 @@
+{% extends 'pages/layout.html' %}
+
+{% block body %}
+
+    {% if user.is_authenticated %}
+
+    <table class="table table-striped table-hover table-bordered">
+        <thead class="table-dark">
+            <tr>
+              <th scope="col">Grade 9</th>
+              <th scope="col">Grade 10</th>
+              <th scope="col">Grade 11</th>
+              <th scope="col">Grade 12</th>
+              
+              
+            </tr>
+          </thead>
+            
+ 
+    {% endif %}
+
+
+{% endblock %}

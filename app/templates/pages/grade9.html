@@ -1,0 +1,30 @@
+{% extends 'pages/layout.html' %}
+
+{% block body %}
+
+{% if user.is_authenticated %}
+
+
+<table class="table table-striped table-hover table-bordered">
+    <thead class="table-dark">
+        <tr>
+          <th scope="col">A</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+          {% if records %}
+          {% for record in records %}
+
+          <tr>
+              <td>{{ record }}</td>
+            </tr>
+            
+            {% endfor %}
+            {% endif %}
+            
+
+{% endif %}
+
+
+{% endblock %}
