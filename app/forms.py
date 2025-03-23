@@ -8,7 +8,8 @@ class RegisterForm(forms.ModelForm):
 
     class Meta:
         model = Registration
-        fields = ['first_Name', 'middle_Name', 'last_Name', 'age', 'phone', 'username', 'password', 'gender', 'grade', 'section']
+        fields = '__all__'
+        exclude = ['']
 
 
 

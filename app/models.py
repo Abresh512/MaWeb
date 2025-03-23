@@ -1,10 +1,10 @@
 from django.db import models
 
 # Create your models here.
-gender = [
-    ('male', 'Male'),
-    ('female', 'Female')
-]
+# gender = [
+#     ('Male', 'Male'),
+#     ('Female', 'Female')
+# ]
 
 grade = [
     ('grade_9', '9'),
@@ -27,12 +27,12 @@ class Registration(models.Model):
     password = models.CharField(max_length=10)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    gender = models.CharField(max_length=10, choices=gender, default=False)
+   # gender = models.CharField(max_length=10, choices=gender, default=False)
     grade = models.CharField(max_length=10, choices=grade, default=False)
     section = models.CharField(max_length=2, null=True, choices=section, default=False)
    
     def __str__(self):
-        return f"{self.first_Name} {self.last_Name}"
+        return f"{self.first_Name} {self.last_Name} {self.middle_Name} {self.age}"
     
 class Teacher(models.Model):
     first_Name = models.CharField(max_length=50)
@@ -97,4 +97,3 @@ class Student_subject(models.Model):
 #     student = models.ManyToManyField(Registration, related_name='student_name')
 #     grade = models.CharField(null=True, blank=True, default=False, max_length=10, choices=grade_choices)
 #     section = models.CharField(null=False, max_length=2)
-
