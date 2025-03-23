@@ -1,10 +1,7 @@
 from django.db import models
 
 # Create your models here.
-# gender = [
-#     ('Male', 'Male'),
-#     ('Female', 'Female')
-# ]
+
 
 grade = [
     ('grade_9', '9'),
@@ -17,6 +14,10 @@ section = [
         ('C', 'C'),
     ]
 
+
+
+
+
 class Registration(models.Model):
     first_Name = models.CharField(max_length=50)
     middle_Name = models.CharField(max_length=50)
@@ -27,7 +28,6 @@ class Registration(models.Model):
     password = models.CharField(max_length=10)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-   # gender = models.CharField(max_length=10, choices=gender, default=False)
     grade = models.CharField(max_length=10, choices=grade, default=False)
     section = models.CharField(max_length=2, null=True, choices=section, default=False)
    
