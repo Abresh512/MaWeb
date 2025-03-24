@@ -9,6 +9,6 @@ urlpatterns = [
     path('students', views.students, name='students'),
     path('teachers', views.teachers, name="teachers"),
     path('sub_teach', views.sub_teach, name='sub_teach'),
-    path('sectiona', views.section_A, name="section_A"),
+    path('sectiona', views.sectionA, name="section_A"),
 
 ]

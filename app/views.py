@@ -86,14 +86,27 @@ def sub_teach(request):
     return render('index')
 
 
-def section_A(request):
-    if request.user.is_authenticated:
-        records = Registration.objects.filter(section='A')
-        return render(request, 'pages/grade9.html',
-            {'records':records})
+# def section_A(request):
+#     if request.user.is_authenticated:
+#         records = Registration.objects.filter(section='A')
+#         return render(request, 'pages/grade9.html',
+#             {'records':records})
     
 def section_A(request):
     if request.user.is_authenticated:
-        records = Registration.objects.filter(section='A')
-        return render(request, 'pages/grade9.html',
-            {'records':records})
+        records = Registration.objects.get(section='A')
+        section_a = records.section_set.all()
+        context = {
+            'records':records,
+            'sectiona': section_a,
+        }
+        return render(request, 'pages/grade9.html', context)
+    
+
+def sectionA(request):
+    if request.user.is_authenticated:
+        sectiona = Registration.objects.filter(section__in=['A'])
+        context={
+            'sectiona':sectiona,
+            }
+        return render(request, 'pages/grdnav.html', context)
