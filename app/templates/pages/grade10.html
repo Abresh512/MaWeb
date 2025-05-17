@@ -1,0 +1,34 @@
+{% extends 'pages/grade_layout.html' %}
+
+{% block body %}
+
+{% if user.is_authenticated %}
+
+
+<table class="table table-white table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">A</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ recorda }}</td>
+      
+    
+  
+      <td>{{ recordb }}b</td>
+    
+    
+    
+      <td>{{ recordc }}</td>
+    </tr>
+  </tbody>
+</table>
+{% endif %}
+
+
+{% endblock %}

@@ -12,13 +12,14 @@
         <a class="nav-link" href="{% url 'students' %}">Students</a>
         <a class="nav-link" href="{% url 'teachers' %}">Teachers</a>
         <a class="nav-link" href="{% url 'sub_teach' %}">Teachers and Subject</a>
+        <a class="nav-link" href="{% url 'grade' %}" target="_blank">Grade</a>
+        <a class="nav-link" href="{% url 'register' %}">New Student</a>
 
-        <a class="nav-link" href="{% url 'section_A' %}">Section A</a>
+        <a class="nav-link" href="{% url 'newmark' %}">Edit Mark List</a>
+        <a class="nav-link" href="{% url 'marklist' %}">Mark List</a>
 
-        
-        
+
         {% else %}
-        <a class="nav-link" href="{% url 'register' %}">Register</a>
         <a class="nav-link" href="{% url 'login' %}">Login</a>
         {% endif %}
       </div>

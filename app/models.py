@@ -35,9 +35,9 @@ class Registration(models.Model):
     gender = models.CharField(max_length=10, choices=gender, default=False)
     grade = models.CharField(max_length=10, choices=grade, default=False)
     section = models.CharField(max_length=2, null=True, choices=section, default=False)
-   
     def __str__(self):
-        return f"{self.first_Name} {self.last_Name} {self.middle_Name} {self.age}"
+        return f"{self.id}--{self.first_Name} {self.last_Name}"
+    
     
 class Teacher(models.Model):
     first_Name = models.CharField(max_length=50)
@@ -94,11 +94,14 @@ class Student_subject(models.Model):
 
 
     
+class NewMark(models.Model):
+    fullname = models.ForeignKey(Registration, on_delete=models.CASCADE, related_name="student", null=True)
+    project = models.IntegerField(null=True, blank=True)
+    mid = models.IntegerField(null=True, blank=True)
+    participation = models.IntegerField(null=True, blank=True)
+    exercise = models.IntegerField(null=True, blank=True)
+    final = models.IntegerField(null=True, blank=True)
+    
 
-
-
-
-# class Section(models.Model):
-#     student = models.ManyToManyField(Registration, related_name='student_name')
-#     grade = models.CharField(null=True, blank=True, default=False, max_length=10, choices=grade_choices)
-#     section = models.CharField(null=False, max_length=2)
+    def __str__(self):
+        return f"{self.project} {self.mid}"

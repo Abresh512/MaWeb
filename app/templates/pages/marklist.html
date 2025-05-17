@@ -1,0 +1,45 @@
+{% extends 'pages/layout.html' %}
+
+{% block body %}
+
+{% if user.is_authenticated %}
+    
+<br>
+<table class="table table-white table-hover">
+  <thead class="table-dark">
+            <tr>
+              <!-- <th scope="col">ID</th> -->
+              <th scope="col">Full Name</th>
+              <th scope="col">Project</th>
+              <th scope="col">Mid</th>
+              <th scope="col">Participation</th>
+              <th scope="col">Exercise</th>
+              <th scope="col">Final</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+              
+            
+            {% for record in record %}
+            <tr>
+                  <td>{{ records.first_Name }} {{ records.last_Name }}</td>
+                  <td>{{ record.project }}</td>
+                  <td>{{ record.mid }}</td>
+                  <td>{{ record.participation }}</td>
+                  <td>{{ record.exercise}}</td>
+                  <td>{{ record.final }}</td>
+                  <td>{{ record.project }}</td>
+                  <td>{{ record.mid }}</td>
+                  <td>{{ record.participation }}</td>
+                  <td>{{ record.exercise}}</td>
+                  <td>{{ record.final }}</td>
+                </tr>
+                {% endfor %}
+                
+
+                
+                
+{% endif %}
+
+{% endblock %}

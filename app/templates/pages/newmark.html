@@ -1,0 +1,57 @@
+{% extends 'pages/layout.html' %}
+
+{% block body %}
+
+{% if user.is_authenticated %}
+    
+<br>
+<table class="table table-white table-hover">
+  <thead class="table-dark">
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Full Name</th>
+              <th scope="col">Project</th>
+              <th scope="col">Mid</th>
+              <th scope="col">Participation</th>
+              <th scope="col">Exercise</th>
+              <th scope="col">Final</th>
+              <th scope="col">Edit</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% if records %}
+              {% for record in records %}
+              <tr>
+                  <td>{{ record.id }}</td>
+                  <td>{{ record.first_Name }} {{ record.middle_Name }}</td>
+                  <form action="{% url 'newmark' %}" method="post">
+                    {% csrf_token %}
+                  <td>
+                    <input type="number" name="project" class="form-control">
+                  </td>
+                  <td>
+                    <input type="number" name="mid" class="form-control">
+                  </td>
+                  <td>
+                    <input type="number" name="participation" class="form-control">
+                  </td>
+                  <td>
+                    <input type="number" name="exercise" class="form-control">
+                  </td>
+                  <td>
+                    <input type="number" name="final" class="form-control">
+                  </td>                                               
+                </tr>                
+                {% endfor %}
+                {% endif %}
+              </tbody>
+            </table>
+            <input type="submit" class="btn btn-primary">
+          </form>
+            
+          </form>
+                
+                
+{% endif %}
+
+{% endblock %}

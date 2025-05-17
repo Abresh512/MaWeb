@@ -2,21 +2,23 @@
 
 {% block body %}
 
+<div class="position-absolute top-50 start-50 translate-middle">
     <form action="{% url 'login' %}" method="post">
         {% csrf_token %}
         
 
-            <h1>Login</h1>
-            <form>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Username" name="username" required>
-                </div><br>
-                <div class="form-group">
-                    <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Password" name="password" required>
-                </div><br>
-                <input type="submit" value="Login" class="btn btn-secondary">
-            </form>
-            
-        </form>
+    <h1>Login</h1>
+    <form>
+        <div class="form-group">
+            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Username" name="username" required>
+        </div><br>
+        <div class="form-group">
+            <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Password" name="password" required>
+        </div><br>
+        <input type="submit" value="Login" class="btn btn-secondary">
+    </form>
+    
+</form>
+</div>
         
 {% endblock %}

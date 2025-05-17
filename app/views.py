@@ -1,14 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from .forms import RegisterForm
-from .models import Registration, Teacher, Subj_teach, section
+from django.contrib.auth.decorators import login_required
+from .forms import RegisterForm, NewMarkk
+from .models import Registration, Teacher, Subj_teach, NewMark
+from .decorator import unauthenticated_user,allowed_user
 # Create your views here.
 
 def index(request):
     return render(request, 'pages/index.html')
 
-
-
+@login_required(login_url='login')
 def register(request):
     submitted = False
     if request.method == 'POST':
@@ -27,7 +28,7 @@ def register(request):
         })
 
 
-
+@unauthenticated_user
 def login_user(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -40,13 +41,16 @@ def login_user(request):
             return redirect('login')
     return render(request, 'pages/login.html')
 
+
+@login_required(login_url='login')
 def logout_user(request):
     logout(request)
     return redirect('index')
 
 
-def students(request):
-    if request.user.is_authenticated:
+@login_required(login_url='login')
+@allowed_user(allowedUsers=['Principal'])
+def Principal(request):
         records = Registration.objects.all()
         if request.method == 'post':
             username = request.POST.get['username']
@@ -57,13 +61,21 @@ def students(request):
                 return redirect('students')
             else:
                 return redirect('index')
+            
         return render(request, 'pages/students.html', {'records':records})
-    return redirect('index')
+
+
+@allowed_user(allowedUsers=['students'])
+@login_required(login_url='login')
+def student(request, pk):
+        user = Registration.objects.get(id=pk)
+        context = {'user':user}
+        return render(request, 'pages/user.html', context)
 
 
 
+@login_required(login_url='login')
 def teachers(request):
-    if request.user.is_authenticated:
         records = Teacher.objects.all()
         if request.method == 'post':
             username = request.POST.get['username']
@@ -75,38 +87,69 @@ def teachers(request):
             else:
                 return redirect('index')
         return render(request, 'pages/teachers.html', {'records':records})
-    return redirect('index')
 
 
 
+@login_required(login_url='login')
+@allowed_user(allowedUsers=['Principal'])
 def sub_teach(request):
-    if request.user.is_authenticated:
         records = Subj_teach.objects.all()
         return render(request, 'pages/sub_teach.html', {'records':records})
-    return render('index')
 
 
-# def section_A(request):
-#     if request.user.is_authenticated:
-#         records = Registration.objects.filter(section='A')
-#         return render(request, 'pages/grade9.html',
-#             {'records':records})
-    
-def section_A(request):
-    if request.user.is_authenticated:
-        records = Registration.objects.get(section='A')
-        section_a = records.section_set.all()
+@login_required(login_url='login')
+def newMark(request):
+    records = Registration.objects.all()
+    record = NewMark.objects.all()
+    form = NewMarkk(request.POST or None)
+    if form.is_valid():
+         form.save()
+         return redirect('marklist')
+    context = {'records':records, 'record':record, 'form':form}
+    return render(request, "pages/newmark.html", context)
+
+@login_required(login_url='login')
+def markList(request):
+    records = Registration.objects.all()
+    marklist = NewMark.objects.all()
+    form = NewMarkk()
+    context = {'records':records, 'record':marklist, 'form':form}
+    return render(request, "pages/marklist.html", context)
+
+
+
+@login_required(login_url='login')
+def Grade(request):
+    return render(request, 'pages/grade.html')
+
+
+
+@login_required(login_url='login')
+def grade_9(request):
+        sectiona = Registration.objects.filter(grade__in=['grade_9'], section__in=['A'])
+        sectionb = Registration.objects.filter(grade__in=['grade_9'], section__in=['B'])
+        sectionc = Registration.objects.filter(grade__in=['grade_9'], section__in=['C'])
+        
         context = {
-            'records':records,
-            'sectiona': section_a,
+            'recorda':sectiona,
+            'recordb':sectionb,
+            'recordc':sectionc
+
         }
         return render(request, 'pages/grade9.html', context)
     
+   
+@login_required(login_url='login')
+def grade_10(request):
+        sectiona = Registration.objects.filter(grade__in=['grade_10'], section__in=['A'])
+        sectionb = Registration.objects.filter(grade__in=['grade_10'], section__in=['B'])
+        sectionc = Registration.objects.filter(grade__in=['grade_10'], section__in=['C'])
+        
+        context = {
+            'recorda':sectiona,
+            'recordb':sectionb,
+            'recordc':sectionc
 
-def sectionA(request):
-    if request.user.is_authenticated:
-        sectiona = Registration.objects.filter(section__in=['A'])
-        context={
-            'sectiona':sectiona,
-            }
-        return render(request, 'pages/grdnav.html', context)
+        }
+        return render(request, 'pages/grade10.html', context)
+    

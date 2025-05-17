@@ -1,29 +1,27 @@
-{% extends 'pages/layout.html' %}
+{% extends 'pages/grade_layout.html' %}
 
 {% block body %}
 
 {% if user.is_authenticated %}
 
-<!-- 
+
 <table class="table table-striped table-hover table-bordered">
-    <thead class="table-dark">
-        <tr>
-          <th scope="col">A</th>
-        </tr>
-      </thead>
-      <tbody>
-        
-          {% if records %}
-          {% for record in records %}
+  <thead class="table-dark">
+      <tr>
+        <th scope="col">A</th>
+        <th scope="col">B</th>
+        <th scope="col">C</th>
 
-          <tr>
-              <td>{{ record. }}</td>
-            </tr>
-            
-            {% endfor %}
-            {% endif %}
-             -->
-
+      </tr>
+    </thead>
+<tbody>
+  <tr>
+    <td>{{ recorda }}</td>
+    <td>{{ recordb }}</td>
+    <td>{{ recordc }}</td>
+  </tr>
+</tbody>
+</table>
 {% endif %}
 
 

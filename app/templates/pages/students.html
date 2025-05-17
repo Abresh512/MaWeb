@@ -5,8 +5,8 @@
 {% if user.is_authenticated %}
     
 <br>
-      <table class="table table-striped table-hover table-bordered">
-        <thead class="table-dark">
+<table class="table table-white table-hover">
+  <thead class="table-dark">
             <tr>
               <th scope="col">ID</th>
               <th scope="col">First Name</th>
@@ -26,6 +26,7 @@
           <tbody>
             
               {% if records %}
+              
               {% for record in records %}
 
               <tr>
@@ -44,12 +45,10 @@
                 </tr>
                 
                 {% endfor %}
+
                 {% endif %}
                 
                 
-  {% endif %}
-
-  
-      
+{% endif %}
 
 {% endblock %}

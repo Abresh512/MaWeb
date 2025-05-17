@@ -3,25 +3,16 @@
 {% block body %}
 
 
-<br>
-
-<!-- {% if messages %}
-    {% for message in messages %}
-        <div>{{ message }}</div>
-    {% endfor %}
-{% endif %} -->
-
-<center>
-<h1>Register</h1>
-
-    <form action="{% url 'register' %}" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-secondary">Register</button>
+<div class="position-absolute top-50 start-50 translate-middle">
+<h1>Add New Student</h1>
     
-</form>
+    <form action="{% url 'register' %}" method="post" class="mx-auto p-2">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-secondary">Register</button>
+    </form>
+</div>
 
 
-</center>
 
 {% endblock %}

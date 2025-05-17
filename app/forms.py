@@ -1,16 +1,22 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Registration, Teacher
+from .models import Registration, Teacher, NewMark
 
 
 class RegisterForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
 
     class Meta:
         model = Registration
         fields = '__all__'
         exclude = ['']
 
+
+class NewMarkk(forms.ModelForm):
+
+    class Meta:
+        model = NewMark
+        field = '__all__'
+        exclude = ['']
 
 
 
